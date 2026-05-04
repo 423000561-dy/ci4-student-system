@@ -10,6 +10,8 @@ class StudentModel extends Model
     protected $primaryKey = 'id';
     protected $returnType = 'array';
     protected $useTimestamps = true;
+    protected $useSoftDeletes = true;
+    protected $deletedField = 'deleted_at';
 
     protected $allowedFields = [
         'student_no',
