@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Add Student</title></head>
-<body>
-<h1>Add Student</h1>
-<?php if (session()->getFlashdata('errors')): foreach (session()->getFlashdata('errors') as $error): ?>
-<p style="color:red;"><?= esc($error) ?></p>
-<?php endforeach; endif; ?>
-<form action="<?= site_url('students') ?>" method="post">
-<?= csrf_field() ?>
-<p>Student No: <input type="text" name="student_no" value="<?= old('student_no') ?>" required></p>
-<p>First Name: <input type="text" name="first_name" value="<?= old('first_name') ?>" required></p>
-<p>Last Name: <input type="text" name="last_name" value="<?= old('last_name') ?>" required></p>
-<p>Email: <input type="email" name="email" value="<?= old('email') ?>" required></p>
-<p>Course: <input type="text" name="course" value="<?= old('course') ?>" required></p>
-<p>Year Level (1-5): <input type="number" min="1" max="5" name="year_level" value="<?= old('year_level') ?>" required></p>
-<button type="submit">Save</button>
-<a href="<?= site_url('students') ?>">Cancel</a>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-4">
+    <h1 class="mb-3">Add Student</h1>
+
+    <?php if (session()->getFlashdata('errors')): ?>
+        <div class="alert alert-danger">
+            <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                <div><?= esc($error) ?></div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <form action="<?= site_url('students') ?>" method="post" class="card card-body shadow-sm">
+        <?= csrf_field() ?>
+        <div class="mb-3"><label class="form-label">Student No</label><input class="form-control" type="text" name="student_no" value="<?= old('student_no') ?>" required></div>
+        <div class="mb-3"><label class="form-label">First Name</label><input class="form-control" type="text" name="first_name" value="<?= old('first_name') ?>" required></div>
+        <div class="mb-3"><label class="form-label">Last Name</label><input class="form-control" type="text" name="last_name" value="<?= old('last_name') ?>" required></div>
+        <div class="mb-3"><label class="form-label">Email</label><input class="form-control" type="email" name="email" value="<?= old('email') ?>" required></div>
+        <div class="mb-3"><label class="form-label">Course</label><input class="form-control" type="text" name="course" value="<?= old('course') ?>" required></div>
+        <div class="mb-3"><label class="form-label">Year Level (1-5)</label><input class="form-control" type="number" min="1" max="5" name="year_level" value="<?= old('year_level') ?>" required></div>
+        <div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="<?= site_url('students') ?>" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>
