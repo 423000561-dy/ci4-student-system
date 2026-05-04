@@ -6,6 +6,13 @@
 <?php if (session()->getFlashdata('message')): ?>
 <p style="color: green;"><?= esc(session()->getFlashdata('message')) ?></p>
 <?php endif; ?>
+
+<form action="<?= site_url('students') ?>" method="get" style="margin-bottom: 12px;">
+    <input type="text" name="q" placeholder="Search by name, email, course..." value="<?= esc($keyword ?? '') ?>">
+    <button type="submit">Search</button>
+    <a href="<?= site_url('students') ?>">Reset</a>
+</form>
+
 <p><a href="<?= site_url('students/new') ?>">Add New Student</a></p>
 <table border="1" cellpadding="8" cellspacing="0">
 <tr><th>ID</th><th>Student No</th><th>Name</th><th>Email</th><th>Course</th><th>Year</th><th>Actions</th></tr>

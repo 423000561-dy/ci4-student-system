@@ -16,8 +16,23 @@ class Students extends BaseController
 
     public function index(): string
     {
+        $keyword = trim((string) $this->request->getGet('q'));
+
+        $builder = $this->students->orderBy('id', 'DESC');
+
+        if ($keyword !== '') {
+            $builder->groupStart()
+                ->like('student_no', $keyword)
+                ->orLike('first_name', $keyword)
+                ->orLike('last_name', $keyword)
+                ->orLike('email', $keyword)
+                ->orLike('course', $keyword)
+                ->groupEnd();
+        }
+
         return view('students/index', [
-            'students' => $this->students->orderBy('id', 'DESC')->findAll(),
+            'students' => $builder->findAll(),
+            'keyword'  => $keyword,
         ]);
     }
 
