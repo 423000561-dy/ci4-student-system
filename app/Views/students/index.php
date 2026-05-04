@@ -39,5 +39,9 @@
 </tr>
 <?php endforeach; ?>
 </table>
+
+<?php if (isset($pager)): ?>
+    <?= $pager->only(['q'])->links() ?>
+<?php endif; ?>
 </body>
 </html>

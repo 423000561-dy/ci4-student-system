@@ -30,9 +30,13 @@ class Students extends BaseController
                 ->groupEnd();
         }
 
+        $students = $builder->paginate(5);
+        $pager = $this->students->pager;
+
         return view('students/index', [
-            'students' => $builder->findAll(),
+            'students' => $students,
             'keyword'  => $keyword,
+            'pager'    => $pager,
         ]);
     }
 
